@@ -8,7 +8,7 @@ app.use(cors()); // CORS 허용
 
 app.get('/search', (req, res) => {
     const query = req.query.q;
-    res.render('get_result', { query });
+    res.render('get_result', { q });
 });
 
 app.post("/submit", (req, res) => {
