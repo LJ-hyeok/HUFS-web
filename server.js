@@ -12,12 +12,22 @@ app.use(express.static("public"));
 
 app.get("/", (req, res) => { res.render("index"); });
 
-app.get("/search", (req, res) => {
+app.get("/calc", (req,res) => { res.render("calc"); });
+app.get("/calcResult", (req,res) => {
+  const v1 = req.query.v1;
+  const v2 = req.query.v2;
+  const r1 = Number(v1) + Number(v2);
+  console.log(v1,v2,r1);
+  res.render("calcResult", {v1, v2, r1});
+})
+
+app.get("/getTest", (req, res) => {
   const query = req.query.q || "";
   res.render("get_result", { query });
+  console.log("서버가 받은 데이터: " + query);
 });
 
-app.post("/submit", (req, res) => {
+app.post("/postTest", (req, res) => {
   const text = req.body.text || "";
   res.render("post_result", { text });
 });
